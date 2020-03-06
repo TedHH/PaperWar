@@ -5,9 +5,9 @@ using UnityEngine;
 public class Unit_info : MonoBehaviour
 {
 
-
     // Use this for initialization
     public double hp;
+    public double maxHp ;
     public double moveSpeed;
     public double attSpeed;
     public double attDmg;
@@ -15,6 +15,9 @@ public class Unit_info : MonoBehaviour
     public double currIntercept;
     public bool isMoving, isAtting, isWorking, isSelect;
 
+    public bool canBuild, canMove, canAttack, canSelect;
+
+    public int belongTo;
 
     GameObject UI;
 
@@ -44,22 +47,10 @@ public class Unit_info : MonoBehaviour
 
 
 
-    public void Create(int which)
+    public void CreateFamer(int who)
     {
-        switch (which)
-        {
-            case 0:
-                CreateFamer();
-                break;
-            case 1:
-                break;
-        }
-    }
-
-    void CreateFamer()
-    {
-
-        hp = 100000;
+        hp = 1000;
+        maxHp = 1000;
         moveSpeed = 5;
         attSpeed = 2;
         attDmg = 5;
@@ -69,5 +60,23 @@ public class Unit_info : MonoBehaviour
         isAtting = false;
         isWorking = false;
         isSelect = false;
+        belongTo = who;
+    }
+
+
+    public void CreateBase(int who)
+    {
+        hp = 1000;
+        maxHp = 1000;
+        moveSpeed = 0;
+        attSpeed = 0;
+        attDmg = 0;
+        attRange = 0;
+        currIntercept = 10;
+        isMoving = false;
+        isAtting = false;
+        isWorking = false;
+        isSelect = false;
+        belongTo = who;
     }
 }

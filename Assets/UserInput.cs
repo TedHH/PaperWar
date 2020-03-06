@@ -37,7 +37,8 @@ public class UserInput : MonoBehaviour
         }
 
         if (Input.GetMouseButtonDown(0)) {
-            if (hoveredObject != null && hoveredObject.name != "Desktop")
+            if (hoveredObject != null && hoveredObject.name != "Desktop" 
+                && hoveredObject.GetComponent<Unit_info>().belongTo == gc.GetComponent<GameControl>().currentPlayer.playerID)
             {
                 selectedObject = hoveredObject;
             }

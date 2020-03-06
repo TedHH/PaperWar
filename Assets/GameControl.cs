@@ -8,7 +8,7 @@ public class GameControl : MonoBehaviour
     private Definitions.GameStatus currentStatus;
     string errorFileLocalion;
 
-    private List<Player> players;
+    public List<Player> players;
 
     public Player currentPlayer;
 
@@ -21,9 +21,13 @@ public class GameControl : MonoBehaviour
         //SwitchStatus(1);
         errorFileLocalion = "Error in GameControl class, ";
         units = GameObject.Find("Unit(s)");
-        currentPlayer = new Player(0);
+        currentPlayer = new Player(0,Color.red);
+        InitialBase(currentPlayer.playerID);
         players.Add(currentPlayer);
 
+        Player another = new Player(1, Color.blue);
+        InitialBase(another.playerID);
+        players.Add(another);
 
     }
 
@@ -37,7 +41,7 @@ public class GameControl : MonoBehaviour
         //======================================
 
         if (true) {
-            units.SetActive(true);
+            units.SetActive(false);
         }
     }
 
@@ -83,6 +87,14 @@ public class GameControl : MonoBehaviour
 
     public int EndScreen() {
         return 1;
+    }
+
+    public void InitialBase(int who) {
+        GameObject prefab = Resources.Load("Models/Base/Base_level1") as GameObject;
+        Instantiate(prefab);
+        int offset = who;
+        prefab.transform.position = new Vector3(offset*200f, 0, offset*-200f);
+        prefab.GetComponent<Unit_info>().CreateBase(who);
     }
 
 }

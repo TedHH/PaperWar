@@ -6,14 +6,20 @@ public class Player
 {
     private List<GameObject> ControlledUnit;
     private List<GameObject> SelectedUnit;
-    private int playerID;
+    public int playerID;
+    public Color color;
+    private GameObject gc;
 
-    public Player(int id) {
+    public Player(int id, Color c) {
         playerID = id;
+        color = c;
         ControlledUnit = new List<GameObject>();
-        SelectedUnit = new List<GameObject>();
+        SelectedUnit = new List<GameObject>();  
     }
 
+    public bool Equals(Player other) {
+        return playerID == other.playerID;
+    }
     public void clearSelect()
     {
         for (int i=0; i<SelectedUnit.Count; i++)
